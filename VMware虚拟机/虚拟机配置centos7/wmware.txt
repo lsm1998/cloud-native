@@ -14,11 +14,12 @@ GATEWAY=192.168.239.2 （${网关ip}）
 IPADDR=192.168.239.100（自定义，和网关ip同网段）
 DNS=8.8.8.8
 
+service network restart
+
 
 vi /etc/resolv.conf
 
 nameserver 8.8.8.8
 
-service network restart
 
 https://blog.csdn.net/gaokcl/article/details/82834925
