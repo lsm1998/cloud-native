@@ -1,0 +1,12 @@
+docker pull mongo:4.4.18-rc0-focal
+
+mkdir -p /opt/mongodb/data/db
+
+docker run -it -d --name mongo \
+-p 27017:27017 \
+-v /opt/mongodb/data/db:/data/db \
+-m 400m --privileged=true \
+-e MONGO_INITDB_ROOT_USERNAME=admin \
+-e MONGO_INITDB_ROOT_PASSWORD=mongoyyds123 \
+-e TZ=Asia/Shanghai \
+--restart=always docker.io/library/mongo:4.4.18-rc0-focal

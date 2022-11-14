@@ -11,3 +11,9 @@ docker cp shardingsphere:/opt/shardingsphere-proxy/conf /opt/shardingsphere-prox
 docker stop shardingsphere && docker rm shardingsphere
 
 docker run --name sharding-sphere-proxy -d -v /opt/shardingsphere-proxy/conf:/opt/shardingsphere-proxy/conf -v /opt/shardingsphere-proxy/ext-lib:/opt/shardingsphere-proxy/ext-lib -e PORT=3308 -p 3308:3308 apache/shardingsphere-proxy:5.1.0
+
+docker run -it -d --name ss -p 3307:3307 \
+-m 800m -v /root/ss:/root/ss \
+-e TZ=Asia/Shanghai --privileged=true \
+openjdk:15 bash
+
