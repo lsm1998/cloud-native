@@ -1,0 +1,10 @@
+docker pull docker.elastic.co/elasticsearch/elasticsearch:8.5.1
+
+docker network create elastic
+
+docker run --name es01 \
+--net elastic -p 9200:9200 -p 9300:9300 -it \
+-v /opt/elasticsearch/config:/usr/share/elasticsearch/config \
+-v /opt/elasticsearch/data:/usr/share/elasticsearch/data \
+-v /opt/elasticsearch/plugins:/usr/share/elasticsearch/plugins \
+--restart=always docker.elastic.co/elasticsearch/elasticsearch:8.5.1

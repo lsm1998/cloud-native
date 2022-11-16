@@ -1,0 +1,5 @@
+docker pull nacos/nacos-server
+
+docker run -it -d -p 8848:8848 --env MODE=standalone \
+-e TZ=Asia/Shanghai \
+--name nacos --restart=always nacos/nacos-server

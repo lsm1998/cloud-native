@@ -1,0 +1,13 @@
+docker pull bitnami/minio
+
+mkdir -p /opt/minio/data
+
+chmod +R 777 /opt/minio/data
+
+docker run -it -d --name minio -m 400m \
+-p 9000:9000 -p 9001:9001 \
+-v /opt/minio/data:/data \
+-e TZ=Asia/Shanghai --privileged=true \
+--env MINIO_ROOT_USER="root" \
+--env MINIO_ROOT_PASSWORD="abc123456" \
+--restart=always bitnami/minio:latest

@@ -1,0 +1,7 @@
+docker pull bladex/sentinel-dashboard
+
+docker run -it -d --name sentinel \
+-p 8719:8719 -p 8858:8858 \
+-e TZ=Asia/Shanghai -m 600m \
+bladex/sentinel-dashboard
+

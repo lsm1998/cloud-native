@@ -1,19 +1,22 @@
 参考：https://blog.csdn.net/apple_csdn/article/details/124452765
 
-docker pull apache/shardingsphere-proxy:5.1.0
+docker pull apache/shardingsphere-proxy:5.2.0
 
 mkdir /opt/shardingsphere-proxy -p
 
 docker run -d --name shardingsphere apache/shardingsphere-proxy:5.1.0
 
-docker cp shardingsphere:/opt/shardingsphere-proxy/conf /opt/shardingsphere-proxy
+docker cp shardingsphere:/opt/shardingsphere-proxy/ /opt/shardingsphere-proxy/
 
 docker stop shardingsphere && docker rm shardingsphere
 
-docker run --name sharding-sphere-proxy -d -v /opt/shardingsphere-proxy/conf:/opt/shardingsphere-proxy/conf -v /opt/shardingsphere-proxy/ext-lib:/opt/shardingsphere-proxy/ext-lib -e PORT=3308 -p 3308:3308 apache/shardingsphere-proxy:5.1.0
+docker run --name sharding-sphere-proxy -d \
+-v /opt/shardingsphere-proxy/conf:/opt/shardingsphere-proxy/conf \
+-v /opt/shardingsphere-proxy/ext-lib:/opt/shardingsphere-proxy/ext-lib \
+-v /opt/shardingsphere-proxy/conf:/opt/shardingsphere-proxy/conf \
+--restart=always -e PORT=3307 -p 3307:3307 apache/shardingsphere-proxy:5.1.0
 
 docker run -it -d --name ss -p 3307:3307 \
 -m 800m -v /root/ss:/root/ss \
 -e TZ=Asia/Shanghai --privileged=true \
 openjdk:15 bash
-

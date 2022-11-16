@@ -1,0 +1,11 @@
+docker pull redis:7.0.4
+
+mkdir -p /opt/redis/data
+
+docker run \
+-p 6379:6379 \
+--name redis \
+-v /opt/redis/redis.conf:/etc/redis/redis.conf \
+-v /opt/redis/data:/data \
+--restart=always \
+-d redis:7.0.4 redis-server /etc/redis/redis.conf
