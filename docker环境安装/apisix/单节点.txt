@@ -1,0 +1,9 @@
+mkdir -p /opt/apisix && cd /opt/apisix
+
+git clone https://github.com/apache/apisix-docker.git
+
+chmod -R 777 /opt/apisix/apisix-docker/example
+
+cd /opt/apisix/apisix-docker/example
+
+docker-compose up -d

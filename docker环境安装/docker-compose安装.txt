@@ -1,0 +1,12 @@
+yum install epel-release
+yum install python3-pip
+pip3 install --upgrade pip
+pip3 install docker-compose
+
+
+
+这里会报错：ModuleNotFoundError: No module named 'setuptools_rust'
+解决方法：pip3 install -U pip setuptools
+
+
+docker-compose --version
