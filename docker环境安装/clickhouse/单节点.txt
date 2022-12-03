@@ -13,6 +13,9 @@ docker run -d --restart=always \
 设置密码：
 docker exec -it clickhouse-server /bin/bash
 
-vi /etc/clickhouse-server/users.xml
+apt update && apt install vim
+
+
+vim /etc/clickhouse-server/users.xml
 
 <password>chyyds123</password>
