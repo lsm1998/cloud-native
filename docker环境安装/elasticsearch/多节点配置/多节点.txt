@@ -1,0 +1,17 @@
+useradd es  新增es用户
+passwd es   为es用户设置密码
+
+cd /opt/
+chown -R es:es elasticsearch-8.5.3
+
+
+root权限
+
+sysctl -w vm.max_map_count=262144
+
+vi /etc/sysctl.conf 文件最后添加一行
+vm.max_map_count=262144
+
+vi /etc/security/limits.conf 文件末尾添加
+*                soft    nofile          65536
+*                hard    nofile          65536
