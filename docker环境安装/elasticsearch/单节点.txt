@@ -6,14 +6,19 @@ docker run --name es01 -d docker.elastic.co/elasticsearch/elasticsearch:8.5.1
 
 docker cp es01:/usr/share/elasticsearch/config /opt/elasticsearch/config
 
-docker run --name es01 -d \
---net elastic -p 9200:9200 -p 9300:9300 -it \
+docker run --name es -d \
+-p 9200:9200 -p 9300:9300 -it \
+-e ES_JAVA_OPTS="-Xms512m -Xmx512m" -e "discovery.type=single-node" \
 -e "discovery.type=single-node" \
 -v /opt/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \
 -v /opt/elasticsearch/data:/usr/share/elasticsearch/data \
 -v /opt/elasticsearch/plugins:/usr/share/elasticsearch/plugins \
 -v /opt/elasticsearch/logs:/usr/share/elasticsearch/logs \
---restart=always docker.elastic.co/elasticsearch/elasticsearch:8.5.1
+--restart=always elasticsearch:8.5.0
 
 
 docker pull docker.elastic.co/kibana/kibana:8.5.1
+
+docker run -d -e ES_JAVA_OPTS="-Xms512m -Xmx512m" -e "discovery.type=single-node" --name es -p 9200:9200 -p 9300:9300 elasticsearch:8.5.0
+
+docker run -d -e ES_JAVA_OPTS="-Xms512m -Xmx512m" -e "discovery.type=single-node" --name es -p 9200:9200 -p 9300:9300 docker.elastic.co/elasticsearch/elasticsearch:8.5.1
